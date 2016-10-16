@@ -14,11 +14,10 @@ var getMessage = function (a,b) {
   for (var i=0; i<=amountOfRedPoints.length-1; i++) {
     sumRedPoints += amountOfRedPoints[i];
   }
-  if Array.isArray(a) {
+  if (Array.isArray(a)) {
     return("Количество красных точек во всех строчках изображения: [amountOfRedPoints]")
   }
-  if Array.isArray(a),
-   Array.isArray(b) {
+  if (Array.isArray(a)&&Array.isArray(b)) {
   return("Общая площадь артефактов сжатия: [artifactsSquare] пикселей")
   }
   var a = [];
