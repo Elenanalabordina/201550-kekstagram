@@ -1,5 +1,5 @@
 
-var getMessage =function (a,b) {
+var getMessage = function (a,b) {
   if(a===true) {
     return("Переданное GIF-изображение анимировано и содержит [b] кадров");
   }
@@ -9,7 +9,11 @@ var getMessage =function (a,b) {
   if(a===number) {
     return("Переданное SVG-изображение содержит [a] объектов и [b * 4] атрибутов";)
   }
-  var amountOfRedPoints = [+]
+  var amountOfRedPoints = [];
+  var sumRedPoints = 0;
+  for (var i=0; i<=amountOfRedPoints.length-1; i++) {
+    sumRedPoints += amountOfRedPoints[i];
+  }
   if Array.isArray(a) {
     return("Количество красных точек во всех строчках изображения: [amountOfRedPoints]")
   }
