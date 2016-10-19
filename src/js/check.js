@@ -3,7 +3,7 @@
   if(a===true) {
     return "Переданное GIF-изображение анимировано и содержит " + b + " кадров";
   }
-  if (b === true) {
+  if (a === false) {
     return "Переданное GIF-изображение не анимировано";
   }
   if(typeof a==="number") {
@@ -12,16 +12,16 @@
    if (Array.isArray(a) && Array.isArray(b)) {
     var artifactsSquare = 0;
     var shorterLength;
-    if(a.lenght <= b.lenght) {
-    shorterLength = a;
-  }
-  else {
-    shorterLength = b;
-  }
-    for (var i=0; i<shorterLength; i++) {
-    artifactsSquare += (a[i]  * b[i]);
+    if(a.length <= b.length) {
+      shorterLength = a.length;
    }
-   return "Общая площадь артефактов сжатия: " + artifactsSquare + " пикселей";
+   else {
+     shorterLength = b.length;
+   }
+    for (var i=0; i < shorterLength; i++) {
+    artifactsSquare += a[i] * b[i];
+   }
+    return "Общая площадь артефактов сжатия: " + artifactsSquare + " пикселей";
  }
  if(Array.isArray(a)) {
   var amountOfRedPoints = 0;
@@ -31,4 +31,4 @@
     return "Количество красных точек во всех строчках изображения: " + amountOfRedPoints;
  }
     return "Переданы некорректные данные";
-  }
+  };
