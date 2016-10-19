@@ -11,14 +11,14 @@
   }
    if (Array.isArray(a) && Array.isArray(b)) {
     var artifactsSquare = 0;
-    var shorterArray;
-    if(a <= b) {
-    shorterArray = a;
+    var shorterLenght;
+    if(a.lenght <= b.lenght) {
+    shorterLenght = a;
   }
   else {
-    shorterArray = b;
+    shorterLenght = b;
   }
-    for (var i=0; i<shorterArray.length; i++) {
+    for (var i=0; i<shorterLength; i++) {
     artifactsSquare += (a[i]  * b[i]);
    }
    return "Общая площадь артефактов сжатия: " + artifactsSquare + " пикселей";
@@ -30,6 +30,5 @@
    }
     return "Количество красных точек во всех строчках изображения: " + amountOfRedPoints;
  }
-  else{
     return "Переданы некорректные данные";
   }
