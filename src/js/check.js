@@ -11,12 +11,12 @@
   }
    if (Array.isArray(a) && Array.isArray(b)) {
     var artifactsSquare = 0;
-    var shorterLenght;
+    var shorterLength;
     if(a.lenght <= b.lenght) {
-    shorterLenght = a;
+    shorterLength = a;
   }
   else {
-    shorterLenght = b;
+    shorterLength = b;
   }
     for (var i=0; i<shorterLength; i++) {
     artifactsSquare += (a[i]  * b[i]);
