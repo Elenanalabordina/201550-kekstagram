@@ -132,6 +132,12 @@
       var shadowBottomBoxStartY = shadowLeftBoxStartY;
       var shadowRightBoxStartX = shadowLeftBoxStartY;
       var shadowRightBoxStartY = shadowLeftBoxStartX;
+      var shadowLeftBoxWidth = shadowTopBoxWidth;
+      var shadowLeftBoxHeight = shadowTopBoxHeight;
+      var shadowBottomBoxWidth = shadowTopBoxWidth;
+      var shadowBottomBoxHeight = shadowTopBoxHeight;
+      var shadowRightBoxWidth = shadowTopBoxWidth;
+      var shadowRightBoxHeight = shadowTopBoxHeight;
 
 
       this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
@@ -139,29 +145,29 @@
       this._ctx.fillRect(
              shadowLeftBoxStartX,
              shadowLeftBoxStartY,
-             -shadowTopBoxWidth,
-             -shadowTopBoxHeight);
+             shadowLeftBoxWidth,
+             shadowLeftBoxHeight);
 
            //снизу прямоугольник
       this._ctx.fillRect(
              shadowBottomBoxStartX,
              shadowBottomBoxStartY,
-             -shadowTopBoxWidth,
-             shadowTopBoxHeight);
+             shadowBottomBoxWidth,
+             shadowBottomBoxHeight);
 
            //справа прямоугольник
       this._ctx.fillRect(
              shadowRightBoxStartX,
              shadowRightBoxStartY,
-             shadowTopBoxWidth,
-             shadowTopBoxHeight);
+             shadowRightBoxWidth,
+             shadowRightBoxHeight);
 
            //верхний прямоугольник
       this._ctx.fillRect(
              shadowTopBoxStartX,
              shadowTopBoxStartY,
              shadowTopBoxWidth,
-             -shadowTopBoxHeight / 2);
+             shadowTopBoxHeight / 2);
 
       this._ctx.font = '16px Arial';
       this._ctx.fillStyle = '#FFF';
