@@ -124,14 +124,14 @@
 
       var shadowLeftBoxStartX = -resizeConstraintSideHalf - this._ctx.lineWidth;
       var shadowLeftBoxStartY = resizeConstraintSideHalf - lineWidthHalf;
-      var shadowRightBoxWidth = this._container.width;
-      var shadowRightBoxHeight = this._container.height;
       var shadowTopBoxStartX = shadowLeftBoxStartX;
       var shadowTopBoxStartY = shadowLeftBoxStartX;
       var shadowBottomBoxStartX = shadowLeftBoxStartY;
       var shadowBottomBoxStartY = shadowLeftBoxStartY;
       var shadowRightBoxStartX = shadowLeftBoxStartY;
       var shadowRightBoxStartY = shadowLeftBoxStartX;
+      var shadowRightBoxWidth = this._container.width;
+      var shadowRightBoxHeight = this._container.height;
       var shadowLeftBoxWidth = -shadowRightBoxWidth;
       var shadowLeftBoxHeight = -shadowRightBoxHeight;
       var shadowBottomBoxWidth = -shadowRightBoxWidth;
