@@ -145,14 +145,14 @@
       this._ctx.fillRect(
              shadowLeftBoxStartX,
              shadowLeftBoxStartY,
-             shadowLeftBoxWidth,
-             shadowLeftBoxHeight);
+             -shadowLeftBoxWidth,
+             -shadowLeftBoxHeight);
 
            //снизу прямоугольник
       this._ctx.fillRect(
              shadowBottomBoxStartX,
              shadowBottomBoxStartY,
-             shadowBottomBoxWidth,
+             -shadowBottomBoxWidth,
              shadowBottomBoxHeight);
 
            //справа прямоугольник
@@ -167,7 +167,7 @@
              shadowTopBoxStartX,
              shadowTopBoxStartY,
              shadowTopBoxWidth,
-             shadowTopBoxHeight / 2);
+             -shadowTopBoxHeight / 2);
 
       this._ctx.font = '16px Arial';
       this._ctx.fillStyle = '#FFF';
