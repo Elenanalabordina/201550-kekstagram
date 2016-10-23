@@ -122,18 +122,18 @@
         this._resizeConstraint.side - lineWidthHalf,
         this._resizeConstraint.side - lineWidthHalf);
 
-      var shadowTopBoxStartX = -resizeConstraintSideHalf - this._ctx.lineWidth;//координата х
-      var shadowTopBoxStartY = resizeConstraintSideHalf - lineWidthHalf;//координата у
+      var shadowLeftBoxStartX = -resizeConstraintSideHalf - this._ctx.lineWidth;
+      var shadowLeftBoxStartY = resizeConstraintSideHalf - lineWidthHalf;
       var shadowTopBoxWidth = this._container.width;
       var shadowTopBoxHeight = this._container.height;
-      var shadowLeftBoxStartX = shadowTopBoxStartX;
-      var shadowLeftBoxStartY = shadowTopBoxStartY;
-      var shadowBottomBoxStartX = shadowTopBoxStartY;
-      var shadowBottomBoxStartY = shadowTopBoxStartY;
-      var shadowRightBoxStartX = shadowTopBoxStartY;
-      var shadowRightBoxStartY = shadowTopBoxStartX;
+      var shadowTopBoxStartX = shadowLeftBoxStartX;
+      var shadowTopBoxStartY = shadowLeftBoxStartX;
+      var shadowBottomBoxStartX = shadowLeftBoxStartY;
+      var shadowBottomBoxStartY = shadowLeftBoxStartY;
+      var shadowRightBoxStartX = shadowLeftBoxStartY;
+      var shadowRightBoxStartY = shadowLeftBoxStartX;
 
-      
+
       this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
            //слева прямоугольник
       this._ctx.fillRect(
@@ -151,15 +151,15 @@
 
            //справа прямоугольник
       this._ctx.fillRect(
-             shadowTopBoxStartY,
-             shadowTopBoxStartX,
+             shadowRightBoxStartX,
+             shadowRightBoxStartY,
              shadowTopBoxWidth,
              shadowTopBoxHeight);
 
            //верхний прямоугольник
       this._ctx.fillRect(
              shadowTopBoxStartX,
-             shadowTopBoxStartX,
+             shadowTopBoxStartY,
              shadowTopBoxWidth,
              -shadowTopBoxHeight / 2);
 
