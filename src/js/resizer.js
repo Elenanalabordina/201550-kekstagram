@@ -124,20 +124,20 @@
 
       var shadowLeftBoxStartX = -resizeConstraintSideHalf - this._ctx.lineWidth;
       var shadowLeftBoxStartY = resizeConstraintSideHalf - lineWidthHalf;
-      var shadowTopBoxWidth = this._container.width;
-      var shadowTopBoxHeight = this._container.height;
+      var shadowRightBoxWidth = this._container.width;
+      var shadowRightBoxHeight = this._container.height;
       var shadowTopBoxStartX = shadowLeftBoxStartX;
       var shadowTopBoxStartY = shadowLeftBoxStartX;
       var shadowBottomBoxStartX = shadowLeftBoxStartY;
       var shadowBottomBoxStartY = shadowLeftBoxStartY;
       var shadowRightBoxStartX = shadowLeftBoxStartY;
       var shadowRightBoxStartY = shadowLeftBoxStartX;
-      var shadowLeftBoxWidth = shadowTopBoxWidth;
-      var shadowLeftBoxHeight = shadowTopBoxHeight;
-      var shadowBottomBoxWidth = shadowTopBoxWidth;
-      var shadowBottomBoxHeight = shadowTopBoxHeight;
-      var shadowRightBoxWidth = shadowTopBoxWidth;
-      var shadowRightBoxHeight = shadowTopBoxHeight;
+      var shadowLeftBoxWidth = -shadowRightBoxWidth;
+      var shadowLeftBoxHeight = -shadowRightBoxHeight;
+      var shadowBottomBoxWidth = -shadowRightBoxWidth;
+      var shadowBottomBoxHeight = shadowRightBoxHeight;
+      var shadowTopBoxWidth = shadowRightBoxWidth;
+      var shadowTopBoxHeight = -shadowRightBoxHeight / 2;
 
 
       this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
@@ -145,14 +145,14 @@
       this._ctx.fillRect(
              shadowLeftBoxStartX,
              shadowLeftBoxStartY,
-             -shadowLeftBoxWidth,
-             -shadowLeftBoxHeight);
+             shadowLeftBoxWidth,
+             shadowLeftBoxHeight);
 
            //снизу прямоугольник
       this._ctx.fillRect(
              shadowBottomBoxStartX,
              shadowBottomBoxStartY,
-             -shadowBottomBoxWidth,
+             shadowBottomBoxWidth,
              shadowBottomBoxHeight);
 
            //справа прямоугольник
@@ -167,7 +167,7 @@
              shadowTopBoxStartX,
              shadowTopBoxStartY,
              shadowTopBoxWidth,
-             -shadowTopBoxHeight / 2);
+             shadowTopBoxHeight);
 
       this._ctx.font = '16px Arial';
       this._ctx.fillStyle = '#FFF';
