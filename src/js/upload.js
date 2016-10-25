@@ -54,11 +54,11 @@
     var currentX = +leftSide.value;
     var currentY = +topSide.value;
     var currentWidth = +sizeSide.value;
-    var positive = (currentX >= 0) && (currentY >= 0);
-    var fitWidth = currentX + currentWidth <= currentResizer._image.naturalWidth;
-    var fitHeight = currentY + currentWidth <= currentResizer._image.naturalHeight;
+    var isStartValid = currentX >= 0 && currentY >= 0;
+    var isValidWidth = currentX + currentWidth <= currentResizer._image.naturalWidth;
+    var isValidHeight = currentY + currentWidth <= currentResizer._image.naturalHeight;
 
-    btnSubmit.disabled = !(positive && fitWidth && fitHeight);
+    btnSubmit.disabled = !(isStartValid && isValidWidth && isValidHeight);
 
   };
 
