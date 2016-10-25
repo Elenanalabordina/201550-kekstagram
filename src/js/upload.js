@@ -61,18 +61,7 @@
     btnSubmit.disabled = !(isStartValid && isValidWidth && isValidHeight);
 
   };
-
-  leftSide.oninput = function() {
-    validateForm();
-  };
-
-  topSide.oninput = function() {
-    validateForm();
-  };
-
-  sizeSide.oninput = function() {
-    validateForm();
-  };
+  leftSide.oninput = topSide.oninput = sizeSide.oninput = validateForm;
 
   /**
    * Удаляет текущий объект {@link Resizer}, чтобы создать новый с другим
