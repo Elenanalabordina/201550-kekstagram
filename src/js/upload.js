@@ -41,6 +41,39 @@
    */
   var currentResizer;
 
+  var leftSide = document.querySelector('#resize-x');
+  var topSide = document.querySelector('#resize-y');
+  var sizeSide = document.querySelector('#resize-size');
+  var btnSubmit = document.querySelector('#resize-fwd');
+
+  leftSide.min = 0;
+  topSide.min = 0;
+
+  var validateForm = function() {
+
+    var currentX = +leftSide.value;
+    var currentY = +topSide.value;
+    var currentWidth = +sizeSide.value;
+    var positive = (currentX >= 0) && (currentY >= 0);
+    var fitWidth = currentX + currentWidth <= currentResizer._image.naturalWidth;
+    var fitHeight = currentY + currentWidth <= currentResizer._image.naturalHeight;
+
+    btnSubmit.disabled = !(positive && fitWidth && fitHeight);
+
+  };
+
+  leftSide.oninput = function() {
+    validateForm();
+  };
+
+  topSide.oninput = function() {
+    validateForm();
+  };
+
+  sizeSide.oninput = function() {
+    validateForm();
+  };
+
   /**
    * Удаляет текущий объект {@link Resizer}, чтобы создать новый с другим
    * изображением.
