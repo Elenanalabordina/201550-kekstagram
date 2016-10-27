@@ -234,6 +234,22 @@
     uploadForm.classList.remove('invisible');
   };
 
+  function saveFiltertoCookies() {
+  var element = document.querySelector('#upload-filter input[type=radio]:checked');
+  browserCookies.set('upload-filter', element.value, {expires: getDaysToExpireCookie() });
+}
+
+  function getDaysToExpireCookie() {
+  var today = new Date();
+  var birthday = new Date(1906, 11, 9);
+  var thisYearBirthday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
+  if (today > thisYearBirthday) {
+    return Math.ceil(today - thisYearBirthday) / (1000 * 60 * 60 * 24);
+  } else {
+    var lastYearBirthday = new Date(today.getFullYear() - 1, birthday.getMonth(), birthday.getDate());
+    return Math.ceil( (today - lastYearBirthday) / (1000 * 60 * 60 * 24) );
+  }
+}
   /**
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
    * выбранному значению в форме.
