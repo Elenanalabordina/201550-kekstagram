@@ -207,7 +207,13 @@
       filterForm.classList.remove('invisible');
     }
   };
-
+  //Чтение сохраненного фильтра из cookies
+  function setFilterFromCookie() {
+    var browserCookies;
+    var filterName = browserCookies.get('upload-filter') || 'none';
+    document.querySelector('#upload-filter-' + filterName).checked = true;
+    filterImage.classList.add('filter-' + filterName);
+  }
   /**
    * Сброс формы фильтра. Показывает форму кадрирования.
    * @param {Event} evt
@@ -236,12 +242,12 @@
 
   saveFiltertoCookies();
 
-
+  //Сохранение в cookies выбранного фильтра
   function saveFiltertoCookies() {
     var element = document.querySelector('#upload-filter input[type=radio]:checked');
     browserCookies.set('upload-filter', element.value, {expires: getDaysToExpireCookie() });
   }
-
+   //Алгоритм расчета кол-ва дней прошедших с посл. д.р. Грейс Хоппер
   function getDaysToExpireCookie() {
     var today = new Date();
     var birthday = new Date(1906, 11, 9);
