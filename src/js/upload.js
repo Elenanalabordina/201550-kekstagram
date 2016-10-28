@@ -209,7 +209,6 @@
   };
   //Чтение сохраненного фильтра из cookies
   function setFilterFromCookie() {
-    var browserCookies;
     var filterName = browserCookies.get('upload-filter') || 'none';
     document.querySelector('#upload-filter-' + filterName).checked = true;
     filterImage.classList.add('filter-' + filterName);
@@ -238,12 +237,12 @@
 
     filterForm.classList.add('invisible');
     uploadForm.classList.remove('invisible');
+
+    saveFilterToCookies();
   };
 
-  saveFiltertoCookies();
-
   //Сохранение в cookies выбранного фильтра
-  function saveFiltertoCookies() {
+  function saveFilterToCookies() {
     var element = document.querySelector('#upload-filter input[type=radio]:checked');
     browserCookies.set('upload-filter', element.value, {expires: getDaysToExpireCookie() });
   }
