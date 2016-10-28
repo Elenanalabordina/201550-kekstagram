@@ -251,12 +251,13 @@
   function getDaysToExpireCookie() {
     var today = new Date();
     var birthday = new Date(1906, 11, 9);
+    var numberMillisecondsInDay = 1000 * 60 * 60 * 24;
     var thisYearBirthday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
     if (today > thisYearBirthday) {
-      return Math.ceil(today - thisYearBirthday) / (1000 * 60 * 60 * 24);
+      return Math.ceil(today - thisYearBirthday) / numberMillisecondsInDay;
     } else {
       var lastYearBirthday = new Date(today.getFullYear() - 1, birthday.getMonth(), birthday.getDate());
-      return Math.ceil( (today - lastYearBirthday) / (1000 * 60 * 60 * 24) );
+      return Math.ceil( (today - lastYearBirthday) / numberMillisecondsInDay);
     }
   }
   /**
