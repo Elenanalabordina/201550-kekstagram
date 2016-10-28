@@ -206,6 +206,7 @@
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
     }
+      saveFilterToCookies();
   };
   //Чтение сохраненного фильтра из cookies
   function setFilterFromCookie() {
@@ -238,7 +239,6 @@
     filterForm.classList.add('invisible');
     uploadForm.classList.remove('invisible');
 
-    saveFilterToCookies();
   };
 
   //Сохранение в cookies выбранного фильтра
