@@ -209,7 +209,7 @@
 
   };
   //Чтение сохраненного фильтра из cookies
-  setFilterFromCookie.onload = function () {
+  window.onload = function setFilterFromCookie() {
     var filterName = browserCookies.get('upload-filter') || 'none';
     document.querySelector('#upload-filter-' + filterName).checked = true;
     filterImage.classList.add('filter-' + filterName);
