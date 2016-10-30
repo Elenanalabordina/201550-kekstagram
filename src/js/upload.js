@@ -206,7 +206,7 @@
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
     }
-      saveFilterToCookies();
+    
   };
   //Чтение сохраненного фильтра из cookies
   function setFilterFromCookie() {
@@ -242,7 +242,9 @@
   };
 
   //Сохранение в cookies выбранного фильтра
-  function saveFilterToCookies() {
+  var saveFilterToCookies = document.getElementById('filter-fwd');
+
+  saveFilterToCookies.onclick = function () {
     var element = document.querySelector('#upload-filter input[type=radio]:checked');
     browserCookies.set('upload-filter', element.value, {expires: getDaysToExpireCookie() });
   }
