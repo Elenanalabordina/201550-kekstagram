@@ -206,10 +206,10 @@
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
     }
-    
+
   };
   //Чтение сохраненного фильтра из cookies
-  function setFilterFromCookie() {
+  setFilterFromCookie.onload = function () {
     var filterName = browserCookies.get('upload-filter') || 'none';
     document.querySelector('#upload-filter-' + filterName).checked = true;
     filterImage.classList.add('filter-' + filterName);
