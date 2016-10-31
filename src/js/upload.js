@@ -208,12 +208,7 @@
     }
 
   };
-  //Чтение сохраненного фильтра из cookies
-  window.onload = function setFilterFromCookie() {
-    var filterName = Cookies.get('upload-filter') || 'none';
-    document.querySelector('#upload-filter-' + filterName).checked = true;
-    filterImage.classList.add('filter-' + filterName);
-  }
+  
   /**
    * Сброс формы фильтра. Показывает форму кадрирования.
    * @param {Event} evt
@@ -241,30 +236,14 @@
 
   };
 
-  //Сохранение в cookies выбранного фильтра
-  var saveFilterToCookies = document.getElementById('filter-fwd');
-
-  saveFilterToCookies.onclick = function () {
-    var element = document.querySelector('#upload-filter input[type=radio]:checked');
-    Cookies.set('upload-filter', element, {expires: getDaysToExpireCookie() });
-  }
-   //Алгоритм расчета кол-ва дней прошедших с посл. д.р. Грейс Хоппер
-  function getDaysToExpireCookie() {
-    var today = new Date();
-    var birthday = new Date(1906, 11, 9);
-    var numberMillisecondsInDay = 1000 * 60 * 60 * 24;
-    var thisYearBirthday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
-    if (today > thisYearBirthday) {
-      return Math.ceil(today - thisYearBirthday) / numberMillisecondsInDay;
-    } else {
-      var lastYearBirthday = new Date(today.getFullYear() - 1, birthday.getMonth(), birthday.getDate());
-      return Math.ceil( (today - lastYearBirthday) / numberMillisecondsInDay);
-    }
-  }
   /**
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
    * выбранному значению в форме.
    */
+  filterImage.classList.remove('filter-none');
+  filterImage.classList.add(Cookies.get('upload-filter'));
+
+
   filterForm.onchange = function() {
     if (!filterMap) {
       // Ленивая инициализация. Объект не создается до тех пор, пока
@@ -286,6 +265,27 @@
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
+  };
+  //Алгоритм расчета кол-ва дней прошедших с посл. д.р. Грейс Хоппер
+  function getDaysToExpireCookie() {
+    var today = new Date();
+    var birthday = new Date(1906, 11, 9);
+    var numberMillisecondsInDay = 1000 * 60 * 60 * 24;
+    var thisYearBirthday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
+    if (today > thisYearBirthday) {
+      return Math.ceil(today - thisYearBirthday) / numberMillisecondsInDay;
+    } else {
+      var lastYearBirthday = new Date(today.getFullYear() - 1, birthday.getMonth(), birthday.getDate());
+      return Math.ceil( (today - lastYearBirthday) / numberMillisecondsInDay);
+    }
+  };
+
+ //Сохранение в cookies выбранного фильтра
+  var saveFilterToCookies = document.getElementById('filter-fwd');
+
+  saveFilterToCookies.onclick = function () {
+    var element = document.getElementsByClassName('filter-image-preview')[0].classList[1];
+    Cookies.set('upload-filter', element, { expires: getDaysToExpireCookie()});
   };
 
   cleanupResizer();
