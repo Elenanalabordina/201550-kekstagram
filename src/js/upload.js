@@ -246,7 +246,7 @@
 
   saveFilterToCookies.onclick = function () {
     var element = document.querySelector('#upload-filter input[type=radio]:checked');
-    Cookies.set('upload-filter', element.value, {expires: getDaysToExpireCookie() });
+    Cookies.set('upload-filter', element, {expires: getDaysToExpireCookie() });
   }
    //Алгоритм расчета кол-ва дней прошедших с посл. д.р. Грейс Хоппер
   function getDaysToExpireCookie() {
