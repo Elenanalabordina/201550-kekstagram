@@ -210,7 +210,7 @@
   };
   //Чтение сохраненного фильтра из cookies
   window.onload = function setFilterFromCookie() {
-    var filterName = browserCookies.get('upload-filter') || 'none';
+    var filterName = Cookies.get('upload-filter') || 'none';
     document.querySelector('#upload-filter-' + filterName).checked = true;
     filterImage.classList.add('filter-' + filterName);
   }
@@ -246,7 +246,7 @@
 
   saveFilterToCookies.onclick = function () {
     var element = document.querySelector('#upload-filter input[type=radio]:checked');
-    browserCookies.set('upload-filter', element.value, {expires: getDaysToExpireCookie() });
+    Cookies.set('upload-filter', element.value, {expires: getDaysToExpireCookie() });
   }
    //Алгоритм расчета кол-ва дней прошедших с посл. д.р. Грейс Хоппер
   function getDaysToExpireCookie() {
