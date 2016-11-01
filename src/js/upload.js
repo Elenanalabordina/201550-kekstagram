@@ -208,11 +208,8 @@
     }
 
   };
-//  window.onload = function setFilterFromCookie() {
-//    var filterName = Cookies.get('upload-filter') || 'none';
-//    document.querySelector('#upload-filter-' + filterName).checked = true;
-//    filterImage.classList.add('filter-' + filterName);
-//  };
+
+
   /**
    * Сброс формы фильтра. Показывает форму кадрирования.
    * @param {Event} evt
@@ -244,8 +241,24 @@
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
    * выбранному значению в форме.
    */
+//   var myCookie = window.Cookies.get('upload-filter');
+//   var checkedInput = filterForm.getElementsByTagName('input');
+//   for (var i = 0; i < checkedInput.length; i++) {
+//     if (checkedInput[i].value === myCookie) {
+//       checkedInput[i].setAttribute('checked', '');
+//     }
+//   }
+var setFilterFromCookie = document.getElementById('filter-fwd');
 
-
+setFilterFromCookie.onclick = function () {
+  var myCookie = window.Cookies.get('upload-filter');
+  var checkedInput = filterForm.getElementsByTagName('input');
+  for (var i = 0; i < checkedInput.length; i++) {
+    if (checkedInput[i].value === myCookie) {
+      checkedInput[i].setAttribute('checked', '');
+    }
+  }
+};
 
   filterForm.onchange = function() {
     if (!filterMap) {
@@ -268,6 +281,7 @@
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
+
   };
   //Алгоритм расчета кол-ва дней прошедших с посл. д.р. Грейс Хоппер
   function getDaysToExpireCookie() {
@@ -283,13 +297,7 @@
     }
   };
 
-  var myCookie = window.Cookies.get('upload-filter');
-  var checkedInput = filterForm.getElementsByTagName('input');
-  for (var i = 0; i < checkedInput.length; i++) {
-    if (checkedInput[i].value === myCookie) {
-      checkedInput[i].setAttribute('checked', '');
-    }
-  }
+
  //Сохранение в cookies выбранного фильтра
 //  var selectFilterInputs = document.getElementsByName('upload-filter');
 
@@ -297,6 +305,7 @@
 //    var element = document.querySelector('input[name="upload-filter"]:checked').getAttribute('value');
 //    Cookies.set('upload-filter', element, { expires: getDaysToExpireCookie()});
 //  };
+
 
   cleanupResizer();
   updateBackground();
