@@ -208,7 +208,11 @@
     }
 
   };
-  
+//  window.onload = function setFilterFromCookie() {
+//    var filterName = Cookies.get('upload-filter') || 'none';
+//    document.querySelector('#upload-filter-' + filterName).checked = true;
+//    filterImage.classList.add('filter-' + filterName);
+//  };
   /**
    * Сброс формы фильтра. Показывает форму кадрирования.
    * @param {Event} evt
@@ -240,8 +244,7 @@
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
    * выбранному значению в форме.
    */
-  filterImage.classList.remove('filter-none');
-  filterImage.classList.add(Cookies.get('upload-filter'));
+
 
 
   filterForm.onchange = function() {
@@ -260,7 +263,7 @@
     var selectedFilter = [].filter.call(filterForm['upload-filter'], function(item) {
       return item.checked;
     })[0].value;
-
+    window.Cookies.set('upload-filter', selectedFilter, { expires: getDaysToExpireCookie() });
     // Класс перезаписывается, а не обновляется через classList потому что нужно
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
@@ -280,13 +283,20 @@
     }
   };
 
+  var myCookie = window.Cookies.get('upload-filter');
+  var checkedInput = filterForm.getElementsByTagName('input');
+  for (var i = 0; i < checkedInput.length; i++) {
+    if (checkedInput[i].value === myCookie) {
+      checkedInput[i].setAttribute('checked', '');
+    }
+  }
  //Сохранение в cookies выбранного фильтра
-  var saveFilterToCookies = document.getElementById('filter-fwd');
+//  var selectFilterInputs = document.getElementsByName('upload-filter');
 
-  saveFilterToCookies.onclick = function () {
-    var element = document.getElementsByClassName('filter-image-preview')[0].classList[1];
-    Cookies.set('upload-filter', element, { expires: getDaysToExpireCookie()});
-  };
+//  selectFilterInputs.onclick = function () {
+//    var element = document.querySelector('input[name="upload-filter"]:checked').getAttribute('value');
+//    Cookies.set('upload-filter', element, { expires: getDaysToExpireCookie()});
+//  };
 
   cleanupResizer();
   updateBackground();
