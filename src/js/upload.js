@@ -241,21 +241,15 @@
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
    * выбранному значению в форме.
    */
-//   var myCookie = window.Cookies.get('upload-filter');
-//   var checkedInput = filterForm.getElementsByTagName('input');
-//   for (var i = 0; i < checkedInput.length; i++) {
-//     if (checkedInput[i].value === myCookie) {
-//       checkedInput[i].setAttribute('checked', '');
-//     }
-//   }
-var setFilterFromCookie = document.getElementById('filter-fwd');
 
-setFilterFromCookie.onclick = function () {
-  var myCookie = window.Cookies.get('upload-filter');
-  var checkedInput = filterForm.getElementsByTagName('input');
-  for (var i = 0; i < checkedInput.length; i++) {
+  var setFilterFromCookie = document.getElementById('resize-fwd');
+
+  setFilterFromCookie.onclick = function () {
+    var myCookie = window.Cookies.get('upload-filter');
+    var checkedInput = filterForm.getElementsByTagName('input');
+    for (var i = 0; i < checkedInput.length; i++) {
     if (checkedInput[i].value === myCookie) {
-      checkedInput[i].setAttribute('checked', '');
+       checkedInput[i].click();
     }
   }
 };
@@ -297,14 +291,6 @@ setFilterFromCookie.onclick = function () {
     }
   };
 
-
- //Сохранение в cookies выбранного фильтра
-//  var selectFilterInputs = document.getElementsByName('upload-filter');
-
-//  selectFilterInputs.onclick = function () {
-//    var element = document.querySelector('input[name="upload-filter"]:checked').getAttribute('value');
-//    Cookies.set('upload-filter', element, { expires: getDaysToExpireCookie()});
-//  };
 
 
   cleanupResizer();
