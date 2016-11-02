@@ -244,17 +244,17 @@
 
   var setFilterFromCookie = document.getElementById('resize-fwd');
 
-  setFilterFromCookie.onclick = function () {
+  setFilterFromCookie.onclick = function() {
     var myCookie = window.Cookies.get('upload-filter');
     var checkedInput = filterForm.getElementsByTagName('input');
     var currentInput;
     for (var i = 0; i < checkedInput.length; i++) {
       currentInput = checkedInput[i];
       if (currentInput.value === myCookie) {
-      currentInput.click();
+        currentInput.click();
+      }
     }
-  }
-};
+  };
 
   filterForm.onchange = function() {
     if (!filterMap) {
@@ -291,7 +291,7 @@
       var lastYearBirthday = new Date(today.getFullYear() - 1, birthday.getMonth(), birthday.getDate());
       return Math.ceil( (today - lastYearBirthday) / numberMillisecondsInDay);
     }
-  };
+  }
 
 
 
