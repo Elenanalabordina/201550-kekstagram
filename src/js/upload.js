@@ -247,9 +247,11 @@
   setFilterFromCookie.onclick = function () {
     var myCookie = window.Cookies.get('upload-filter');
     var checkedInput = filterForm.getElementsByTagName('input');
+    var currentInput;
     for (var i = 0; i < checkedInput.length; i++) {
-    if (checkedInput[i].value === myCookie) {
-       checkedInput[i].click();
+      currentInput = checkedInput[i];
+      if (currentInput.value === myCookie) {
+      currentInput.click();
     }
   }
 };
