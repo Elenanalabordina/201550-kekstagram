@@ -242,9 +242,9 @@
    * выбранному значению в форме.
    */
 
-  var setFilterFromCookie = document.getElementById('resize-fwd');
+  var toFilterButton = document.getElementById('resize-fwd');
 
-  setFilterFromCookie.onclick = function() {
+  toFilterButton.onclick = function() {
     var myCookie = window.Cookies.get('upload-filter');
     var checkedInput = filterForm.getElementsByTagName('input');
     var currentInput;
@@ -284,11 +284,14 @@
     var today = new Date();
     var birthday = new Date(1906, 11, 9);
     var numberMillisecondsInDay = 1000 * 60 * 60 * 24;
-    var thisYearBirthday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
+    var currentYear = today.getFullYear();
+    var birthMonth = birthday.getMonth();
+    var birthDay = birthday.getDate();
+    var thisYearBirthday = new Date(currentYear, birthMonth, birthDay);
     if (today > thisYearBirthday) {
-      return Math.ceil(today - thisYearBirthday) / numberMillisecondsInDay;
+      return Math.ceil( (today - thisYearBirthday) / numberMillisecondsInDay);
     } else {
-      var lastYearBirthday = new Date(today.getFullYear() - 1, birthday.getMonth(), birthday.getDate());
+      var lastYearBirthday = new Date(currentYear - 1, birthMonth, birthDay);
       return Math.ceil( (today - lastYearBirthday) / numberMillisecondsInDay);
     }
   }
