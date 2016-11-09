@@ -1,7 +1,11 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Елена Налабордина](https://up.htmlacademy.ru/javascript/7/user/201550).
+<<<<<<< HEAD
 * Наставник: `Максим Ерехинский`.
+=======
+* Наставник: `Виталий Останин`.
+>>>>>>> module1-task2
 
 ---
 
