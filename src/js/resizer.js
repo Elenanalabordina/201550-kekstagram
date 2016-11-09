@@ -101,11 +101,14 @@
       // Сохранение состояния канваса.
       this._ctx.save();
 
+
       // Установка начальной точки системы координат в центр холста.
       this._ctx.translate(this._container.width / 2, this._container.height / 2);
 
-      var displX = -(this._resizeConstraint.x + this._resizeConstraint.side / 2);
-      var displY = -(this._resizeConstraint.y + this._resizeConstraint.side / 2);
+      var resizeConstraintSideHalf = this._resizeConstraint.side / 2;
+      var lineWidthHalf = this._ctx.lineWidth / 2;
+      var displX = -(this._resizeConstraint.x + resizeConstraintSideHalf);
+      var displY = -(this._resizeConstraint.y + resizeConstraintSideHalf);
       // Отрисовка изображения на холсте. Параметры задают изображение, которое
       // нужно отрисовать и координаты его верхнего левого угла.
       // Координаты задаются от центра холста.
@@ -114,10 +117,64 @@
       // Отрисовка прямоугольника, обозначающего область изображения после
       // кадрирования. Координаты задаются от центра.
       this._ctx.strokeRect(
-          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-          this._resizeConstraint.side - this._ctx.lineWidth / 2,
-          this._resizeConstraint.side - this._ctx.lineWidth / 2);
+        -resizeConstraintSideHalf - lineWidthHalf,
+        -resizeConstraintSideHalf - lineWidthHalf,
+        this._resizeConstraint.side - lineWidthHalf,
+        this._resizeConstraint.side - lineWidthHalf);
+
+      var shadowLeftBoxStartX = -resizeConstraintSideHalf - this._ctx.lineWidth;
+      var shadowLeftBoxStartY = resizeConstraintSideHalf - lineWidthHalf;
+      var shadowTopBoxStartX = shadowLeftBoxStartX;
+      var shadowTopBoxStartY = shadowLeftBoxStartX;
+      var shadowBottomBoxStartX = shadowLeftBoxStartY;
+      var shadowBottomBoxStartY = shadowLeftBoxStartY;
+      var shadowRightBoxStartX = shadowLeftBoxStartY;
+      var shadowRightBoxStartY = shadowLeftBoxStartX;
+      var shadowRightBoxWidth = this._container.width;
+      var shadowRightBoxHeight = this._container.height;
+      var shadowLeftBoxWidth = -shadowRightBoxWidth;
+      var shadowLeftBoxHeight = -shadowRightBoxHeight;
+      var shadowBottomBoxWidth = -shadowRightBoxWidth;
+      var shadowBottomBoxHeight = shadowRightBoxHeight;
+      var shadowTopBoxWidth = shadowRightBoxWidth;
+      var shadowTopBoxHeight = -shadowRightBoxHeight / 2;
+
+
+      this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
+           //слева прямоугольник
+      this._ctx.fillRect(
+             shadowLeftBoxStartX,
+             shadowLeftBoxStartY,
+             shadowLeftBoxWidth,
+             shadowLeftBoxHeight);
+
+           //снизу прямоугольник
+      this._ctx.fillRect(
+             shadowBottomBoxStartX,
+             shadowBottomBoxStartY,
+             shadowBottomBoxWidth,
+             shadowBottomBoxHeight);
+
+           //справа прямоугольник
+      this._ctx.fillRect(
+             shadowRightBoxStartX,
+             shadowRightBoxStartY,
+             shadowRightBoxWidth,
+             shadowRightBoxHeight);
+
+           //верхний прямоугольник
+      this._ctx.fillRect(
+             shadowTopBoxStartX,
+             shadowTopBoxStartY,
+             shadowTopBoxWidth,
+             shadowTopBoxHeight);
+
+      this._ctx.font = '16px Arial';
+      this._ctx.fillStyle = '#FFF';
+      this._ctx.textAlign = 'center';
+      this._ctx.fillText(this._image.naturalWidth + ' x ' + this._image.naturalHeight,
+             0,
+             (-resizeConstraintSideHalf) - this._ctx.lineWidth * 2);
 
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
