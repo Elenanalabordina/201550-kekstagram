@@ -150,5 +150,6 @@
 
   renderPictures(pictures);
 
+  filters.classList.remove('hidden');
 
 })();
