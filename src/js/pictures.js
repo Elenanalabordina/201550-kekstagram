@@ -113,6 +113,7 @@
   filters.classList.add('hidden');
 
   var IMAGE_LOAD_TIMEOUT = 10000;
+  var IMG_SIZE = 182;
   var container = document.querySelector('.pictures');
   var pictureTemplate = document.querySelector('#picture-template');
   var templateContainer = 'content' in pictureTemplate ? pictureTemplate.content : pictureTemplate;
@@ -123,12 +124,12 @@
     pictureElement.querySelector('.picture-likes').innerHTML = picture.likes;
     var templateImage = pictureElement.querySelector('img');
 
-    var pic = new Image(182, 182);
+    var pic = new Image(templateImage.width, templateImage.height);
     pic.onload = function(evt) {
       clearTimeout(backgroundImageTimeout);
       templateImage.src = evt.target.src;
-      pic.width = evt.target.width;
-      pic.height = evt.target.height;
+      templateImage.width = IMG_SIZE;
+      templateImage.height = IMG_SIZE;
     };
     pic.onerror = function () {
       pictureElement.classList.add('picture-load-failure');
