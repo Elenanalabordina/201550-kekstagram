@@ -228,7 +228,9 @@
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
     }
+
   };
+
 
   /**
    * Сброс формы фильтра. Показывает форму кадрирования.
@@ -254,12 +256,28 @@
 
     filterForm.classList.add('invisible');
     uploadForm.classList.remove('invisible');
+
   };
 
   /**
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
    * выбранному значению в форме.
    */
+
+  var toFilterButton = document.getElementById('resize-fwd');
+
+  toFilterButton.onclick = function() {
+    var myCookie = window.Cookies.get('upload-filter');
+    var checkedInput = filterForm.getElementsByTagName('input');
+    var currentInput;
+    for (var i = 0; i < checkedInput.length; i++) {
+      currentInput = checkedInput[i];
+      if (currentInput.value === myCookie) {
+        currentInput.click();
+      }
+    }
+  };
+
   filterForm.onchange = function() {
     if (!filterMap) {
       // Ленивая инициализация. Объект не создается до тех пор, пока
@@ -276,12 +294,31 @@
     var selectedFilter = [].filter.call(filterForm['upload-filter'], function(item) {
       return item.checked;
     })[0].value;
-
+    window.Cookies.set('upload-filter', selectedFilter, { expires: getDaysToExpireCookie() });
     // Класс перезаписывается, а не обновляется через classList потому что нужно
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
+
   };
+  //Алгоритм расчета кол-ва дней прошедших с посл. д.р. Грейс Хоппер
+  function getDaysToExpireCookie() {
+    var today = new Date();
+    var birthday = new Date(1906, 11, 9);
+    var numberMillisecondsInDay = 1000 * 60 * 60 * 24;
+    var currentYear = today.getFullYear();
+    var birthMonth = birthday.getMonth();
+    var birthDay = birthday.getDate();
+    var thisYearBirthday = new Date(currentYear, birthMonth, birthDay);
+    if (today > thisYearBirthday) {
+      return Math.ceil( (today - thisYearBirthday) / numberMillisecondsInDay);
+    } else {
+      var lastYearBirthday = new Date(currentYear - 1, birthMonth, birthDay);
+      return Math.ceil( (today - lastYearBirthday) / numberMillisecondsInDay);
+    }
+  }
+
+
 
   cleanupResizer();
   updateBackground();
