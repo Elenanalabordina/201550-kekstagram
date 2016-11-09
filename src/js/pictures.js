@@ -122,17 +122,18 @@
     pictureElement.querySelector('.picture-comments').innerHTML = picture.comments;
     pictureElement.querySelector('.picture-likes').innerHTML = picture.likes;
     var templateImage = pictureElement.querySelector('img');
-    var pic = new Image(templateImage.width, templateImage.height);
+
+    var pic = new Image(182, 182);
     pic.onload = function(evt) {
       clearTimeout(backgroundImageTimeout);
       templateImage.src = evt.target.src;
+      pic.width = evt.target.width;
+      pic.height = evt.target.height;
     };
     pic.onerror = function () {
       pictureElement.classList.add('picture-load-failure');
     };
     pic.src = picture.url;
-    pic.width = 182;
-    pic.height = 182;
 
     var backgroundImageTimeout = setTimeout(function() {
       pictureElement.classList.add('hotel-nophoto');
@@ -149,5 +150,5 @@
 
   renderPictures(pictures);
 
-  
+
 })();
