@@ -54,7 +54,7 @@
     });
   };
 
-  renderPictures(pictures);
+  load(PICTURES_LOAD_URL, renderPictures);
 
   filters.classList.remove('hidden');
 
