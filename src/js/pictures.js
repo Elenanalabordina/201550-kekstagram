@@ -1,7 +1,7 @@
 'use strict';
 (function() {
   var PICTURES_LOAD_URL = 'http://localhost:1507/api/pictures';
-  var callbackName;
+  var callbackName = 'JSONPRequest';
 
   var load = function(url, callback) {
 
