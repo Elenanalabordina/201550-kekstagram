@@ -1,6 +1,8 @@
 'use strict';
 
-var getPicture = function(picture) {
+
+var getPicture = function(picture, picNum) {
+  var gallery = require('./gallery');
   var IMAGE_LOAD_TIMEOUT = 10000;
   var IMG_SIZE = 182;
   var pictureTemplate = document.querySelector('#picture-template');
@@ -11,7 +13,7 @@ var getPicture = function(picture) {
 
   var templateImage = pictureElement.querySelector('img');
   var pic = new Image();
-
+  // place event holders before setting src to avoid cash problems
   pic.onload = function(evt) {
     clearTimeout(backgroundImageTimeout);
     templateImage.src = evt.target.src;
@@ -28,6 +30,14 @@ var getPicture = function(picture) {
   var backgroundImageTimeout = setTimeout(function() {
     pictureElement.classList.add('hotel-nophoto');
   }, IMAGE_LOAD_TIMEOUT);
+
+  pictureElement.onclick = function(evt) {
+    console.log('click');
+    evt.preventDefault();
+    if(!this.classList.contains('picture-load-failure')) {
+      gallery.show(picNum);
+    }
+  };
 
   return pictureElement;
 };
